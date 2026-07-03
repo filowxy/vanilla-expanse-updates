@@ -35,19 +35,29 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: f3-data
+  - type: file
+    id: f3-screenshot
     attributes:
-      label: F3 debug info
+      label: F3 screenshot(s) (required)
       description: |
-        Paste key info from the F3 debug screen (mspt graph, memory usage, CPU usage).
-        If you can attach an F3 screenshot, drag it directly into the issue.
-      placeholder: |
-        ```
-        [F3 info]
-        ```
+        Drag and drop screenshots of the F3 debug screen here, or click to browse.
+        Accepted: `.png`, `.jpg`, `.jpeg`, `.gif` (max 25MB per file).
+        Please attach:
+        - One shot of the right side (mspt graph + memory)
+        - One shot of the left side (chunk + entity stats)
+        If you cannot screenshot, leave empty and fill the numeric fields below.
     validations:
       required: true
+
+  - type: file
+    id: log-attach
+    attributes:
+      label: Latest log file (recommended)
+      description: |
+        Drag and drop `logs/latest.log` here for context. Helps correlate perf issues
+        with background errors or warnings.
+    validations:
+      required: false
 
   - type: input
     id: mspt
@@ -118,7 +128,7 @@ body:
     attributes:
       label: Pre-submission checklist
       options:
-        - label: I have provided F3 mspt data
+        - label: I have attached an F3 screenshot showing the lag
           required: true
         - label: I have confirmed this is a persistent issue (not a one-off)
           required: true
