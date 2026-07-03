@@ -1,7 +1,7 @@
 name: Pack Request
 description: Request to add a mod, remove a mod, adjust default configuration, or add a new feature.
 title: "[Request] "
-labels: ["enhancement"]
+labels: ["request"]
 body:
   - type: markdown
     attributes:
