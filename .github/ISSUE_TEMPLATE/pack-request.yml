@@ -1,0 +1,79 @@
+name: 整合包请求
+description: 请求添加模组、移除模组、调整默认配置或添加新功能。
+title: "[Request] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        所有请求都会被评估，但不代表一定会被采纳。
+        请在提交前搜索现有 issue 避免重复。
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: 请求类型
+      options:
+        - 添加模组
+        - 移除模组
+        - 调整默认配置
+        - 添加整合包功能
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 请求描述
+      description: 详细描述你希望整合包做什么改动。
+      placeholder: |
+        例：希望整合包添加 JEI 侧边栏插件 EMI，以方便查看配方。
+    validations:
+      required: true
+
+  - type: input
+    id: target
+    attributes:
+      label: 相关模组 / 内容名称
+      description: 如果是模组相关，请填写模组名（modid 或显示名均可）。
+      placeholder: "modid 或显示名"
+    validations:
+      required: false
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: 为什么这个请求有价值
+      description: 对整合包玩家群体的影响、解决的问题或带来的乐趣。
+      placeholder: |
+        例：当前整合包缺少 [X] 类内容，添加 [Y 模组] 可以填补此空白。
+        该模组与 [Z 优化模组] 兼容，已在测试服验证。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: 你认为对性能的影响
+      options:
+        - 显著正面（减少卡顿 / 内存）
+        - 轻微正面
+        - 中性（无明显影响）
+        - 轻微负面
+        - 显著负面（增加卡顿 / 内存）
+        - 不确定
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 提交前检查
+      options:
+        - label: 我已搜索过现有请求，确认没有重复
+          required: true
+        - label: 我已说明请求对整合包的价值
+          required: true
+        - label: 我理解此请求可能不会被采纳
+          required: true
