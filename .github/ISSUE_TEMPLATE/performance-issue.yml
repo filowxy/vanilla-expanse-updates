@@ -1,0 +1,126 @@
+name: 性能问题
+description: TPS 下降、卡顿、帧丢失、内存占用过高。
+title: "[Perf] "
+labels: ["performance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        性能问题需要具体数据才能定位。请提供 F3 调试信息和硬件配置。
+
+  - type: dropdown
+    id: perf-symptom
+    attributes:
+      label: 卡顿类型
+      description: 描述你遇到的主要症状。
+      options:
+        - 持续性低 TPS（mspt 常驻 50ms+）
+        - 偶发尖刺（mspt 偶发跳到 100ms+）
+        - 区块加载卡（移动时明显卡顿）
+        - 实体聚集卡（刷怪/动物密集区）
+        - 跨维度卡（进入末地/地狱）
+        - 加载/启动慢
+        - 内存占用过高
+        - GPU 帧率低
+    validations:
+      required: true
+
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 触发场景
+      description: 在什么情况下出现？玩家位置、生物群系、附近实体数、正在做什么。
+      placeholder: |
+        例：在主世界村庄，附近 30+ 村民 + 60+ 动物，TPS 下降到 12。
+    validations:
+      required: true
+
+  - type: textarea
+    id: f3-data
+    attributes:
+      label: F3 调试信息
+      description: |
+        请粘贴 F3 调试界面的关键信息（mspt 曲线、内存使用、CPU 使用）。
+        如果能附上 F3 截图请直接拖入 issue。
+      placeholder: |
+        ```
+        [F3 信息]
+        ```
+    validations:
+      required: true
+
+  - type: input
+    id: mspt
+    attributes:
+      label: 平均 mspt (毫秒/tick)
+      placeholder: "35"
+    validations:
+      required: true
+
+  - type: input
+    id: tps
+    attributes:
+      label: 估算 TPS
+      placeholder: "15"
+    validations:
+      required: true
+
+  - type: input
+    id: ram-allocated
+    attributes:
+      label: 分配的堆内存
+      placeholder: "4G (ZGC, -Xmx4096m)"
+    validations:
+      required: true
+
+  - type: input
+    id: ram-actual
+    attributes:
+      label: 实际内存占用 (F3 顶部)
+      placeholder: "3200 MB / 4096 MB"
+    validations:
+      required: true
+
+  - type: input
+    id: render-distance
+    attributes:
+      label: 渲染距离 / 模拟距离
+      placeholder: "12 / 10"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: 操作系统
+      placeholder: "Windows 11 64-bit"
+    validations:
+      required: true
+
+  - type: input
+    id: cpu
+    attributes:
+      label: CPU
+      placeholder: "AMD Ryzen 7 8845H"
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU
+      placeholder: "NVIDIA GeForce RTX 4060 Laptop"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 提交前检查
+      options:
+        - label: 我已提供 F3 mspt 数据
+          required: true
+        - label: 我已确认这是持续问题（非偶发）
+          required: true
+        - label: 我已尝试降低渲染距离，问题仍存在
+          required: true
