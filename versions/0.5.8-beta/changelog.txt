@@ -1,0 +1,18 @@
+Vanilla Expense 0.5.8-beta
+
+## What's new
+- Initial beta release of Vanilla Expense modpack (NeoForge 1.21.1)
+
+## Performance
+- Tuned JVM parameters for ZGC (SoftMaxHeapSize=3072m, 4G heap)
+- Disabled entity shadows and asynchronous chunk writes
+- Configured Sodium, C2ME, Lithium, FerriteCore, ModernFix, Embeddium
+- Reduced particle count and render distance
+
+## Mods
+- 200+ mods for gameplay, performance, and visuals
+- Includes World-Scape (custom terrain generation)
+- See modlist.txt in the modpack root for the full mod list
+
+## Known issues
+- This is a BETA version, please report bugs
