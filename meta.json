@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "hotfixesFormat": null,
+  "versions": [
+    {
+      "id": "0.5.8-beta",
+      "releasedAt": 1782100080000,
+      "promotions": {
+        "downloads": {
+          "modrinth": "https://modrinth.com/modpack/vanilla-expanse",
+          "curseforge": null,
+          "generic": null
+        }
+      },
+      "updateType": "minor"
+    }
+  ]
+}
