@@ -1,50 +1,50 @@
-name: 性能问题
-description: TPS 下降、卡顿、帧丢失、内存占用过高。
+name: Performance Issue
+description: TPS drops, lag, frame loss, high memory usage.
 title: "[Perf] "
 labels: ["performance"]
 body:
   - type: markdown
     attributes:
       value: |
-        性能问题需要具体数据才能定位。请提供 F3 调试信息和硬件配置。
+        Performance issues require concrete data to diagnose. Please provide F3 debug info and your hardware configuration.
 
   - type: dropdown
     id: perf-symptom
     attributes:
-      label: 卡顿类型
-      description: 描述你遇到的主要症状。
+      label: Lag type
+      description: Describe the main symptom you are experiencing.
       options:
-        - 持续性低 TPS（mspt 常驻 50ms+）
-        - 偶发尖刺（mspt 偶发跳到 100ms+）
-        - 区块加载卡（移动时明显卡顿）
-        - 实体聚集卡（刷怪/动物密集区）
-        - 跨维度卡（进入末地/地狱）
-        - 加载/启动慢
-        - 内存占用过高
-        - GPU 帧率低
+        - Sustained low TPS (mspt constantly 50ms+)
+        - Occasional spikes (mspt occasionally jumps to 100ms+)
+        - Chunk loading lag (visible lag while moving)
+        - Entity cluster lag (mob farms / animal-dense areas)
+        - Dimension change lag (entering Nether / End)
+        - Slow loading / startup
+        - Excessive memory usage
+        - Low GPU frame rate
     validations:
       required: true
 
   - type: textarea
     id: scenario
     attributes:
-      label: 触发场景
-      description: 在什么情况下出现？玩家位置、生物群系、附近实体数、正在做什么。
+      label: Trigger scenario
+      description: When does it occur? Player position, biome, nearby entity count, what you are doing.
       placeholder: |
-        例：在主世界村庄，附近 30+ 村民 + 60+ 动物，TPS 下降到 12。
+        e.g. In a main world village with 30+ villagers and 60+ animals nearby, TPS drops to 12.
     validations:
       required: true
 
   - type: textarea
     id: f3-data
     attributes:
-      label: F3 调试信息
+      label: F3 debug info
       description: |
-        请粘贴 F3 调试界面的关键信息（mspt 曲线、内存使用、CPU 使用）。
-        如果能附上 F3 截图请直接拖入 issue。
+        Paste key info from the F3 debug screen (mspt graph, memory usage, CPU usage).
+        If you can attach an F3 screenshot, drag it directly into the issue.
       placeholder: |
         ```
-        [F3 信息]
+        [F3 info]
         ```
     validations:
       required: true
@@ -52,7 +52,7 @@ body:
   - type: input
     id: mspt
     attributes:
-      label: 平均 mspt (毫秒/tick)
+      label: Average mspt (ms/tick)
       placeholder: "35"
     validations:
       required: true
@@ -60,7 +60,7 @@ body:
   - type: input
     id: tps
     attributes:
-      label: 估算 TPS
+      label: Estimated TPS
       placeholder: "15"
     validations:
       required: true
@@ -68,7 +68,7 @@ body:
   - type: input
     id: ram-allocated
     attributes:
-      label: 分配的堆内存
+      label: Allocated heap memory
       placeholder: "4G (ZGC, -Xmx4096m)"
     validations:
       required: true
@@ -76,7 +76,7 @@ body:
   - type: input
     id: ram-actual
     attributes:
-      label: 实际内存占用 (F3 顶部)
+      label: Actual memory usage (F3 top)
       placeholder: "3200 MB / 4096 MB"
     validations:
       required: true
@@ -84,7 +84,7 @@ body:
   - type: input
     id: render-distance
     attributes:
-      label: 渲染距离 / 模拟距离
+      label: Render distance / simulation distance
       placeholder: "12 / 10"
     validations:
       required: true
@@ -92,7 +92,7 @@ body:
   - type: input
     id: os
     attributes:
-      label: 操作系统
+      label: Operating system
       placeholder: "Windows 11 64-bit"
     validations:
       required: true
@@ -116,11 +116,11 @@ body:
   - type: checkboxes
     id: preflight
     attributes:
-      label: 提交前检查
+      label: Pre-submission checklist
       options:
-        - label: 我已提供 F3 mspt 数据
+        - label: I have provided F3 mspt data
           required: true
-        - label: 我已确认这是持续问题（非偶发）
+        - label: I have confirmed this is a persistent issue (not a one-off)
           required: true
-        - label: 我已尝试降低渲染距离，问题仍存在
+        - label: I have tried lowering render distance; the problem persists
           required: true
