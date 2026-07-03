@@ -35,27 +35,45 @@ body:
     validations:
       required: true
 
-  - type: file
-    id: f3-screenshot
+  - type: textarea
+    id: f3-data
     attributes:
-      label: F3 screenshot(s) (required)
+      label: F3 debug info (text + screenshots)
       description: |
-        Drag and drop screenshots of the F3 debug screen here, or click to browse.
-        Accepted: `.png`, `.jpg`, `.jpeg`, `.gif` (max 25MB per file).
-        Please attach:
-        - One shot of the right side (mspt graph + memory)
-        - One shot of the left side (chunk + entity stats)
-        If you cannot screenshot, leave empty and fill the numeric fields below.
+        Describe key F3 values here, then **drag F3 screenshots into the comment area**
+        after submitting (any user can attach images in comments).
+
+        Most useful values to transcribe:
+        - mspt graph peak and average
+        - Memory used / allocated
+        - Chunk updates / entities rendered
+        - Server ms / frame ms
+      placeholder: |
+        Example:
+        - mspt peak: 95ms (constant during village traversal)
+        - Memory: 3.4G / 4.0G
+        - Chunks: 261 / 441
+        - Entities: 312 (E:118, misc:194)
+        - Server ms: 65
+        - Frame ms: 28
+
+        (Drag screenshots into the comment area below this issue.)
     validations:
       required: true
 
-  - type: file
-    id: log-attach
+  - type: textarea
+    id: log-excerpt
     attributes:
-      label: Latest log file (recommended)
+      label: Relevant log excerpt (optional)
       description: |
-        Drag and drop `logs/latest.log` here for context. Helps correlate perf issues
-        with background errors or warnings.
+        Paste any [WARN] / [ERROR] lines from `logs/latest.log` that occurred around
+        the same time as the lag. If you want the whole log, **drag `latest.log` (or a
+        compressed .gz / .zip) into the comment area below this issue**.
+      placeholder: |
+        ```
+        [12:34:56] [Render thread/WARN]: ...
+        [12:34:57] [Server thread/ERROR]: ...
+        ```
     validations:
       required: false
 
@@ -128,7 +146,9 @@ body:
     attributes:
       label: Pre-submission checklist
       options:
-        - label: I have attached an F3 screenshot showing the lag
+        - label: I have provided F3 numeric data and described the scenario
+          required: true
+        - label: I have attached F3 screenshots in the comment area
           required: true
         - label: I have confirmed this is a persistent issue (not a one-off)
           required: true
