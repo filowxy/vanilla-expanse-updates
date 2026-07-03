@@ -1,47 +1,47 @@
-name: 崩溃报告
-description: 游戏启动、进入世界、跨维度或其他场景下的崩溃。
+name: Crash Report
+description: Game startup, world entry, dimension change, or other crashes.
 title: "[Crash] "
 labels: ["bug", "crash"]
 body:
   - type: markdown
     attributes:
       value: |
-        感谢你提交崩溃报告。请尽量提供完整信息，否则我们难以定位问题。
-        如果崩溃由特定模组触发，请直接提交到该模组作者的 issue 页面（这个仓库不维护第三方模组）。
+        Thanks for submitting a crash report. Please provide complete information; otherwise it is hard to locate the issue.
+        If the crash is caused by a specific mod, please report it to that mod author's issue tracker (this repo does not maintain third-party mods).
 
   - type: dropdown
     id: crash-phase
     attributes:
-      label: 崩溃阶段
-      description: 崩溃发生在什么阶段？
+      label: Crash phase
+      description: At what stage did the crash occur?
       options:
-        - 启动阶段（JVM 启动中 / 模组加载）
-        - 主菜单（进入主菜单时）
-        - 进入世界
-        - 游戏中（游玩中随机崩溃）
-        - 跨维度 / 传送
-        - 退出世界 / 关闭游戏
-        - 其他
+        - Startup (JVM boot / mod loading)
+        - Main menu
+        - Entering world
+        - In-game (random crash during play)
+        - Dimension change / teleport
+        - Exiting world / closing game
+        - Other
     validations:
       required: true
 
   - type: textarea
     id: crash-log
     attributes:
-      label: 崩溃日志
+      label: Crash log
       description: |
-        请粘贴以下文件之一的完整内容（不要截取片段）：
+        Paste the complete content of one of the following files (do not truncate):
         - `logs/latest.log`
         - `logs/debug.log`
         - `crash-reports/crash-YYYY-MM-DD_HH.MM.SS-client.txt`
-        - `hs_err_pid*.log`（JVM 崩溃时生成）
+        - `hs_err_pid*.log` (generated on JVM crash)
       placeholder: |
-        [请在这里粘贴完整日志]
-        长日志请用 <details> 折叠：
-        <details><summary>点击展开完整日志</summary>
+        [Paste the complete log here]
+        Use <details> to fold long logs:
+        <details><summary>Click to expand full log</summary>
 
         ```
-        [日志内容]
+        [log content]
         ```
         </details>
     validations:
@@ -50,11 +50,11 @@ body:
   - type: textarea
     id: repro-steps
     attributes:
-      label: 复现步骤
-      description: 触发崩溃需要的操作（从打开启动器开始描述）。
+      label: Steps to reproduce
+      description: Operations required to trigger the crash (from launching the launcher).
       placeholder: |
-        1. 启动游戏
-        2. 创建/进入世界，...
+        1. Launch the game
+        2. Create/enter a world, ...
         3. ...
     validations:
       required: true
@@ -62,18 +62,18 @@ body:
   - type: textarea
     id: expected-vs-actual
     attributes:
-      label: 预期行为 vs 实际行为
-      description: 描述你期望发生什么，实际发生了什么。
+      label: Expected vs actual behavior
+      description: Describe what you expected to happen and what actually happened.
       placeholder: |
-        **预期**: 游戏正常进入世界。
-        **实际**: 进入世界时立即崩溃，崩溃报告为 ...
+        **Expected**: Game enters the world normally.
+        **Actual**: Game crashes immediately on world entry; crash report shows ...
     validations:
       required: true
 
   - type: input
     id: mc-version
     attributes:
-      label: Minecraft 版本
+      label: Minecraft version
       placeholder: "1.21.1"
     validations:
       required: true
@@ -81,7 +81,7 @@ body:
   - type: input
     id: neoforge-version
     attributes:
-      label: NeoForge 版本
+      label: NeoForge version
       placeholder: "21.1.233"
     validations:
       required: true
@@ -89,7 +89,7 @@ body:
   - type: input
     id: java-version
     attributes:
-      label: Java 版本
+      label: Java version
       placeholder: "21.0.7 (Microsoft OpenJDK 64-Bit Server VM)"
     validations:
       required: true
@@ -97,21 +97,21 @@ body:
   - type: dropdown
     id: launcher
     attributes:
-      label: 启动器
+      label: Launcher
       options:
         - PCL
         - HMCL
-        - MultiMc
+        - MultiMC
         - CurseForge App
         - Prism Launcher
-        - 其他
+        - Other
     validations:
       required: true
 
   - type: input
     id: ram
     attributes:
-      label: 分配内存
+      label: Allocated memory
       placeholder: "4G (ZGC, -Xmx4096m)"
     validations:
       required: true
@@ -119,24 +119,24 @@ body:
   - type: dropdown
     id: modded-clean
     attributes:
-      label: 是否做过纯净测试
-      description: 移除所有非整合包自带的额外 mod 后是否仍崩溃。
+      label: Tested in clean state?
+      description: Does the crash still occur after removing all mods not included in the modpack?
       options:
-        - 没有额外 mod（即纯净整合包状态）
-        - 有额外 mod，移除后不崩溃
-        - 有额外 mod，移除后仍崩溃
-        - 没有测试
+        - No extra mods (pristine modpack state)
+        - Extra mods present; crash disappears when removed
+        - Extra mods present; crash persists when removed
+        - Not tested
     validations:
       required: true
 
   - type: checkboxes
     id: preflight
     attributes:
-      label: 提交前检查
+      label: Pre-submission checklist
       options:
-        - label: 我已搜索过现有 issue，确认没有重复
+        - label: I have searched existing issues and confirmed no duplicate
           required: true
-        - label: 我已提供完整崩溃日志（非片段）
+        - label: I have provided the complete crash log (not a fragment)
           required: true
-        - label: 我已提供复现步骤和预期/实际行为
+        - label: I have provided reproduction steps and expected/actual behavior
           required: true
