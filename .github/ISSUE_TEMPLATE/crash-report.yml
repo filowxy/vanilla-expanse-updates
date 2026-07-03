@@ -25,27 +25,36 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: crash-log
+  - type: file
+    id: crash-log-file
     attributes:
-      label: Crash log
+      label: Crash log file (required)
       description: |
-        Paste the complete content of one of the following files (do not truncate):
-        - `logs/latest.log`
-        - `logs/debug.log`
-        - `crash-reports/crash-YYYY-MM-DD_HH.MM.SS-client.txt`
-        - `hs_err_pid*.log` (generated on JVM crash)
-      placeholder: |
-        [Paste the complete log here]
-        Use <details> to fold long logs:
-        <details><summary>Click to expand full log</summary>
-
-        ```
-        [log content]
-        ```
-        </details>
+        Drag and drop your crash log file here, or click to browse.
+        Accepted: `.log`, `.txt`, `.gz`, `.zip` (max 25MB per file).
+        Uploading is preferred over pasting because:
+        - Long logs stay readable
+        - Original encoding and line endings are preserved
+        - You can attach multiple files (e.g. latest.log + crash-reports/*.txt)
     validations:
       required: true
+
+  - type: textarea
+    id: crash-log-excerpt
+    attributes:
+      label: Relevant log excerpt (optional)
+      description: |
+        If the log is very long, paste only the section that contains the exception
+        (lines starting with `Exception`, `Caused by`, `at ...`, etc.). Otherwise leave empty.
+      placeholder: |
+        ```
+        java.lang.IllegalStateException: ...
+            at ...
+            at ...
+        Caused by: ...
+        ```
+    validations:
+      required: false
 
   - type: textarea
     id: repro-steps
@@ -136,7 +145,7 @@ body:
       options:
         - label: I have searched existing issues and confirmed no duplicate
           required: true
-        - label: I have provided the complete crash log (not a fragment)
+        - label: I have attached the complete crash log file
           required: true
         - label: I have provided reproduction steps and expected/actual behavior
           required: true
