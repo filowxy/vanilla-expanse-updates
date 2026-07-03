@@ -25,36 +25,28 @@ body:
     validations:
       required: true
 
-  - type: file
-    id: crash-log-file
+  - type: textarea
+    id: crash-log
     attributes:
-      label: Crash log file (required)
+      label: Crash log
       description: |
-        Drag and drop your crash log file here, or click to browse.
-        Accepted: `.log`, `.txt`, `.gz`, `.zip` (max 25MB per file).
-        Uploading is preferred over pasting because:
-        - Long logs stay readable
-        - Original encoding and line endings are preserved
-        - You can attach multiple files (e.g. latest.log + crash-reports/*.txt)
+        Paste the full content of one of the following files. Do not truncate.
+
+        - `logs/latest.log`
+        - `logs/debug.log`
+        - `crash-reports/crash-YYYY-MM-DD_HH.MM.SS-client.txt`
+        - `hs_err_pid*.log` (JVM crash log)
+
+        **Tip**: If the log is very large, please compress it into a `.zip` or `.gz` and
+        **drag the archive into the comment area** below the issue body after submitting
+        (GitHub supports file drag-and-drop in comments for any user). That keeps the
+        issue body readable while still giving us the full log.
+      placeholder: |
+        [Paste the complete log here]
+
+        Or attach a compressed archive in the comment area below this issue.
     validations:
       required: true
-
-  - type: textarea
-    id: crash-log-excerpt
-    attributes:
-      label: Relevant log excerpt (optional)
-      description: |
-        If the log is very long, paste only the section that contains the exception
-        (lines starting with `Exception`, `Caused by`, `at ...`, etc.). Otherwise leave empty.
-      placeholder: |
-        ```
-        java.lang.IllegalStateException: ...
-            at ...
-            at ...
-        Caused by: ...
-        ```
-    validations:
-      required: false
 
   - type: textarea
     id: repro-steps
@@ -145,7 +137,7 @@ body:
       options:
         - label: I have searched existing issues and confirmed no duplicate
           required: true
-        - label: I have attached the complete crash log file
+        - label: I have provided the complete crash log (pasted and/or attached as a file)
           required: true
         - label: I have provided reproduction steps and expected/actual behavior
           required: true
